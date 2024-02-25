@@ -13,6 +13,7 @@ type config struct {
 	db   struct {
 		dsn string
 	}
+	allowCORS string
 }
 
 type application struct {
@@ -32,6 +33,8 @@ func main() {
 	var cfg config
 	flag.StringVar(&cfg.port, "port", os.Getenv("PORT"), "API server port")
 	flag.StringVar(&cfg.db.dsn, "db-dsn", os.Getenv("SCHOLARLY_DB_DSN"), "PostgreSQL DSN")
+	flag.StringVar(&cfg.allowCORS, "allowCORS", os.Getenv("ALLOW_CORS"), "Allow CORS")
+
 
 	flag.Parse()
 
