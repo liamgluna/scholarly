@@ -15,6 +15,9 @@ func (app *application) routes() http.Handler {
 	router.Use(middleware.Logger)
 	router.Use(middleware.Recoverer)
 
+	router.MethodNotAllowed(app.methodNotAllowedResponse)
+	router.NotFound(app.notFoundResponse)
+
 	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("Hello, Cruel World!"))
