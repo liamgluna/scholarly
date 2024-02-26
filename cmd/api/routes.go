@@ -17,6 +17,7 @@ func (app *application) routes() http.Handler {
 	router.Use(middleware.RealIP)
 	router.Use(middleware.StripSlashes)
 	router.Use(middleware.Logger)
+	router.Use(app.rateLimit)
 	router.Use(middleware.Recoverer)
 	router.Use(cors.Handler(cors.Options{
 		AllowedOrigins:   []string{app.cfg.allowCORS},
